@@ -21,14 +21,13 @@ func ProxyServer(ProxyAddress, target string, res http.ResponseWriter, req *http
 		fmt.Println("Error : " , err)
 		return
 	}
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error reading response body: ", err)
+		return
+	}
 	defer resp.Body.Close()
-
-		body, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			fmt.Println("Error reading response body: ", err)
-			return
-		}
-
 		doc, err := html.Parse(strings.NewReader(string(body)))
 		if err != nil {
 			fmt.Println("Error parsing HTML: ", err)
