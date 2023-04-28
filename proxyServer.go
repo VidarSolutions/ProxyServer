@@ -14,7 +14,7 @@ import (
 	"github.com/vidarsolutions/Transfer"
 )
 
-func ProxyServer(Proxyaddress, target string, res http.ResponseWriter, req *http.Request) {
+func ProxyServer(ProxyAddress, target string, res http.ResponseWriter, req *http.Request) {
 	var t =Transfer.Dialer(ProxyAddress)
 	resp, _ := t.Request("GET", target, nil)
 	defer resp.Body.Close()
