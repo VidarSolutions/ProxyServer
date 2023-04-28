@@ -8,14 +8,15 @@ import(
 )
 
 func ProxyServer(target string, res http.ResponseWriter, req *http.Request){
-
-	 proxy := &httputil.ReverseProxy{
+    proxy := &httputil.ReverseProxy{
         Director: func(req *http.Request) {
+            req.URL.Path = req.URL.Path // set the URL path to the incoming request's path
             req.URL.Scheme = "http"
             req.URL.Host = target
-            req.Host = ""  //"" removes the host header and target  set the Host header if desired
+            req.Host = "" // Remove Host header to prevent redirects
         },
     }
+
     proxy.ServeHTTP(res, req)
 
 }
