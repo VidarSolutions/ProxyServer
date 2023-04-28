@@ -1,11 +1,16 @@
 package ProxyServer
 
-import(
-
+import (
+	"bytes"
+	"html"
+	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
-
+	"net/url"
+	"strconv"
+	"strings"
 )
+
 func ProxyServer(target string, res http.ResponseWriter, req *http.Request) {
 	proxy := &httputil.ReverseProxy{
 		Director: func(req *http.Request) {
