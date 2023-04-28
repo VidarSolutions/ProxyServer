@@ -2,7 +2,7 @@ package ProxyServer
 
 import (
 	"bytes"
-	"html"
+	//"html"
 	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
