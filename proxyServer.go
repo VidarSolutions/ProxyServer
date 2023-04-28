@@ -9,7 +9,7 @@ import (
 	//"net/url"
 	"strconv"
 	"strings"
-	golang.org/x/net/html
+	"golang.org/x/net/html"
 )
 
 func ProxyServer(target string, res http.ResponseWriter, req *http.Request) {
