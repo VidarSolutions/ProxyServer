@@ -1,14 +1,14 @@
 package ProxyServer
 
 import (
-	"bytes"
+	//"bytes"
 	"fmt"
 	//"html"
 	"io/ioutil"
 	"net/http"
-	"net/http/httputil"
-	//"net/url"
-	"strconv"
+	//"net/http/httputil"
+	"net/url"
+	//"strconv"
 	"strings"
 	"golang.org/x/net/html"
 	"github.com/vidarsolutions/Transfer"
@@ -40,7 +40,7 @@ func ProxyServer(target string, res http.ResponseWriter, req *http.Request) {
 						if err != nil {
 							continue
 						}
-						if u.Host == target.Host {
+						if u.Host == target {
 							u.Host = req.Host
 							u.Scheme = req.URL.Scheme
 							n.Attr[i].Val = u.String()
