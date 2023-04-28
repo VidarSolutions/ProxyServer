@@ -44,9 +44,9 @@ func ProxyServer(ProxyAddress, target string, res http.ResponseWriter, req *http
 							continue
 						}
 						
-							u.Host = "http://"+req.Host + "/" + target
-							u.Scheme = req.URL.Scheme
-							n.Attr[i].Val = u.String()
+							u.Host = req.Host + "/" + target
+							u.Scheme = "http"
+							n.Attr[i].Val = n.Attr[i].Val = u.String()
 					
 					}
 				}
