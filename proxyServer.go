@@ -9,13 +9,16 @@ import(
 
 func ProxyServer(target string, res http.ResponseWriter, req *http.Request){
 
-	proxy := &ReverseProxy{
-	Rewrite: func(r *ProxyRequest) {
-		r.SetURL(target)
-		r.Out.Host = r.In.Host // if desired
-	},
+	 proxy := &httputil.ReverseProxy{
+        Director: func(req *http.Request) {
+            req.URL.Scheme = "http"
+            req.URL.Host = target
+            req.Host = target // set the Host header if desired
+        },
+    }
+    proxy.ServeHTTP(res, req)
+
 }
 
- proxy.ServeHTTP(res, req)
 
-}
+
