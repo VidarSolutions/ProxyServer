@@ -2,6 +2,7 @@ package ProxyServer
 
 import (
 	"bytes"
+	"fmt"
 	//"html"
 	"io/ioutil"
 	"net/http"
@@ -15,17 +16,8 @@ import (
 
 func ProxyServer(target string, res http.ResponseWriter, req *http.Request) {
 	var t =Transfer.Dialer("127.0.0.1:9050")
-		if err != nil {
-			fmt.Println("Error creating request: ", err)
-			return
-		}
-
-	resp, _ = t.Request("GET", target, nil)
-		if err != nil {
-			fmt.Println("Error fetching response: ", err)
-			return
-		}
-		defer resp.Body.Close()
+	resp, _ := t.Request("GET", target, nil)
+	defer resp.Body.Close()
 
 		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
