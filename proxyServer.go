@@ -16,7 +16,11 @@ import (
 
 func ProxyServer(ProxyAddress, target string, res http.ResponseWriter, req *http.Request) {
 	var t =Transfer.Dialer(ProxyAddress)
-	resp, _ := t.Request("GET", target, nil)
+	resp, err := t.Request("GET", target, nil)
+	if err != nil{
+		fmt.Println("Error : " , err)
+		return
+	}
 	defer resp.Body.Close()
 
 		body, err := ioutil.ReadAll(resp.Body)
