@@ -13,7 +13,7 @@ func ProxyServer(target string, res http.ResponseWriter, req *http.Request){
         Director: func(req *http.Request) {
             req.URL.Scheme = "http"
             req.URL.Host = target
-            req.Host = target // set the Host header if desired
+            req.Host = ""  //"" removes the host header and target  set the Host header if desired
         },
     }
     proxy.ServeHTTP(res, req)
