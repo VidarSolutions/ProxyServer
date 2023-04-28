@@ -44,7 +44,7 @@ func ProxyServer(ProxyAddress, target string, res http.ResponseWriter, req *http
 							continue
 						}
 						
-							u.Host = req.Host + "/" + target
+							u.Host = req.Host + "/"  + strings.TrimLeft(strings.ReplaceAll(target, "%2F", "/"), "/")
 							u.Scheme = "http"
 							n.Attr[i].Val = u.String()
 					
